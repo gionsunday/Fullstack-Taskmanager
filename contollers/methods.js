@@ -9,8 +9,8 @@ const getTask = asyncWrapper( async (req,res) =>{
 })
 
 const createTask = asyncWrapper( async (req,res) =>{
-    const {userID} = req.user
-    req.body.createdBy = userID
+    // const {userID} = req.user
+    // req.body.createdBy = userID
     const task = await Task.create({...req.body})
     res.status(201).json({task}) 
 })
