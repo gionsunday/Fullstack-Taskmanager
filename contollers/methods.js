@@ -4,7 +4,7 @@ const { createCustomError } =  require('../errors/custom-errors')
 
 const getTask = asyncWrapper( async (req,res) =>{
     const createdBy = req.params.createdby
-     const tasks = await Task.find({createdBy:createdBy})
+     const tasks = await Task.find({})
      res.status(200).json({tasks}) 
 })
 
