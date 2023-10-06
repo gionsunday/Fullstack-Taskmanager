@@ -11,7 +11,7 @@ const {
     
 const auth = require('../middleware/auth')
 
-router.route('/:createdby').get(getTask)
+router.route('/').get(getTask)
 router.post('/', auth, createTask)
 router.route('/:id').get(getSingleTask).patch(updateTask).delete(deleteTask)
 module.exports = router
