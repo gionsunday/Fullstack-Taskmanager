@@ -1,6 +1,8 @@
 
 const express = require('express');
 const tasks = require('./routes/taskroutes')
+
+const user = require('./routes/user')
 require('dotenv').config()
 const {connectDB} = require('./db/dbCon')
 const errorHandlerMiddleware =  require('./middleware/errorHandler')
@@ -25,6 +27,7 @@ app.use('/', express.static(path.join(__dirname,'public')))
 //routess
 
 app.use('/api/v01/tasks', tasks)
+app.use('/api/v01/user', user)
 app.use(notFound)
 app.use(errorHandlerMiddleware)
 

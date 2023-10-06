@@ -1,14 +1,17 @@
-const Task = require('../modules/tasks')
+const Task = require('../models/tasks')
 const asyncWrapper = require('../middleware/async')
 const { createCustomError } =  require('../errors/custom-errors')
 
 const getTask = asyncWrapper( async (req,res) =>{
-     const tasks = await Task.find({})
+    const createdBy = req.params.createdby
+     const tasks = await Task.find({createdBy:createdBy})
      res.status(200).json({tasks}) 
 })
 
 const createTask = asyncWrapper( async (req,res) =>{
-    const task = await Task.create(req.body)
+    const {userID} = req.user
+    req.body.createdBy = userID
+    const task = await Task.create({...req.body})
     res.status(201).json({task}) 
 })
 

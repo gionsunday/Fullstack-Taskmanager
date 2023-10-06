@@ -8,7 +8,10 @@ const {
      updateTask
      
     } = require('../contollers/methods')
+    
+const auth = require('../middleware/auth')
 
-router.route('/').get(getTask).post(createTask)
+router.route('/:createdby').get(getTask)
+router.post('/', auth, createTask)
 router.route('/:id').get(getSingleTask).patch(updateTask).delete(deleteTask)
 module.exports = router
